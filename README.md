@@ -3,22 +3,20 @@
 ## 1. Sequencing longitudinal nasopharyngeal swab samples using the Nimagen amplicon protocol (https://www.nimagen.com/gfx/protcol-NimaGen-covid-wgs_v19.pdf)
     1. 536 samples in total (180 patients days 1, 3 & 5, except 3 patients who missed >= 1 visits) 
     2. Amplicon library prep and QC carried out by Jack Pilgrim and Alex Rzeszutek 
-    3. Illumina sequencing conducted by Centre for Genomics Research
+    3. Illumina sequencing conducted by Centre for Genomics Research (CGR)
     4. Demultiplexing and initial data processing conducted by Richard Gregory and Sam Haldenby (CGR Informatics team)
     5. Raw fastq files processed with the EasySeq pipeline (v0.9; https://github.com/JordyCoolen/easyseq_covid19) using the default parameters 
     - mutation frequency: >=0.5
     - QUAL:	>=20
     - Minimum sequence depth: 10
-    - Maximum %N: 0.09999
     6. Pangolin lineage assignments, minor variant analysis and all data visualisation done by I'ah Donovan-Banfield
         - 177 patients have day 1 lineage data.
 
 Sample details in sample_info directory: 
-1. AGILE-nimagen-full-180_final-metadata.csv (includes Panoglin lineage info, N count and treatment allocation information)
+1. AGILE-nimagen-full-180_final-metadata.csv (for stratifying data in R analysis)
 2. SRA accession (PRJNA854613) metadata files 
     - SRA-metadata_AGILE-library-prep.xlsx
     - SRA_submission_metadata_AGILE_sctu.xlsx
-
 
 ## Workflow 
 ### 1. Run raw fastq files through the EasySeq pipeline 
@@ -33,9 +31,11 @@ Sample details in sample_info directory:
    - move all passed bam files to new directory
 ### 4. Generate metadata table with sample / trial information 
    Includes:
+   - Kit id (unique sample identifier)
    - Treatment group 
-   - visit day 
-   - kit_id (unique sample identifier)
+   - Visit day 
+   - N count 
+   - Lineage information 
    
 ### 5. Run DiversiTools on all passed samples
    - requires the primer trimmed bam file (called sample-name_L001.final.bam in EasySeq outputs)
