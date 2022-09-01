@@ -1,4 +1,6 @@
-# AGILE CST-2 Viral Genomics project
+# Characterisation of SARS-CoV-2 genomic variations in response to molnupiravir treatment in the AGILE Phase IIa clinical trial.
+
+raw fastq data available from the National Center for Biotechnology Information (NCBI) Short Read Archive (SRA) (Project Accession Number PRJNA854613)
 
 ## 1. Sequencing longitudinal nasopharyngeal swab samples using the Nimagen amplicon protocol (https://www.nimagen.com/gfx/protcol-NimaGen-covid-wgs_v19.pdf)
     1. 536 samples in total (180 patients days 1, 3 & 5, except 3 patients who missed >= 1 visits) 
