@@ -54,18 +54,15 @@ all_aa$kit_id <- gsub("_[^_]*", "", all_aa$kit_id)
 # read in metadata
 metadata <- read.csv("~/projects/agile_mpv_seq_project/sample_info/AGILE-nimagen-full-180_final-metadata.csv")
 # merge sample dataframe with metadata 
-all_aa <- merge(all_aa, metadata, by="kit_id")
-# convert to long format for plotting
-melt_all_aa <- reshape2::melt(all_aa, id.vars = c('AAPosition', "AAPsn", "kit_id", "Subject", "lineage_group","Protein", "tx_group", "TopAA", "SndAA", "TrdAA" ),
-                                 measure.vars=  c("ProportionTopAA", "ProportionSndAA", "ProportionTrdAA" ))
-melt_all_aa$variable <- as.factor(melt_all_aa$variable)
-# create lineage groups as samples' assigned lineages contain multiple sublineages. Kept the Omicron sub-lineages separate as different characteristics
-melt_all_aa$lineage_group <- factor(melt_all_aa$lineage_group, levels=c("alpha", "B.1.177/EU1", "delta", "BA.1", "BA.2", "XE"))
-
-melt_all_aa$tx_group <- factor(melt_all_aa$tx_group, levels=c("Group B", "Group A"))
-
+metadata <- read.csv("~/projects/agile_mpv_seq_project/sample_info/AGILE-nimagen-full-180_final-metadata.csv")
+# add vax status 
+vax <- read.csv("~/projects/agile_mpv_seq_project/sample_info/AGILE_CST2_group_info.csv")
+vax <- rename(vax, tx_group=Group)
+metadata <- merge(metadata, vax, by=c("Subject", "tx_group"))
+# merge sample dataframe with metadata 
+all_aa_meta <- merge(all_aa, metadata, by="kit_id")
 # select only the useful columns
-all_aa_mv <- select(all_aa, 3:6, 14, 16, 18, 26:30, 32, 34:36, 40, 41,43)
+all_aa_mv <- select(all_aa_meta, 3:6, 14, 16, 18, 26:33, 35:37, 43:44)
 # create one column for AA ranks
 all_aa_mv_m <- pivot_longer(all_aa_mv, cols=c("TopAA", "SndAA", "TrdAA"), names_to = "AA_rank", values_to = "AA")
 # creat column for the proportion values
@@ -74,6 +71,7 @@ all_aa_mv_m <- pivot_longer(all_aa_mv_m, cols=c("ProportionTopAA", "ProportionSn
 all_aa_mv_m$Prop_AA_name <- gsub("Proportion", "", all_aa_mv_m$Prop_AA_name)
 all_aa_mv_m_final <- all_aa_mv_m %>% filter(AA_rank == Prop_AA_name)
 all_aa_mv_m_final$Subject <- factor(all_aa_mv_m_final$Subject)
+all_aa_mv_m_final$Vaccinated <- factor(all_aa_mv_m_final$Vaccinated, levels= c("No", "Yes"))
 # make tx_group and AA_rank columns factors for plotting
 all_aa_mv_m_final$tx_group <- factor(all_aa_mv_m_final$tx_group, levels=c("Group B", "Group A"))
 # rename Snd and Trd and set class to factor
@@ -100,6 +98,7 @@ delta_final <- all_aa_mv_m_final %>% filter(AA!="") %>% filter(AA!="<NA>") %>%
   filter(lineage_group == "delta") %>% filter(AAcoverage>200)
 ba1_final <- all_aa_mv_m_final %>% filter(AA!="") %>% filter(AA!="<NA>") %>% 
   filter(lineage_group == "BA.1") %>% filter(AAcoverage>200)
+
 
 # plot whole genome minor variations ####
 plot_wg_mv_alpha <- ggplot(alpha_final, aes(x=RefSite, y=Prop_AA, colour=AA_rank)) + 
