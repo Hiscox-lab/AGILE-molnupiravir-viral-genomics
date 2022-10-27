@@ -77,7 +77,10 @@ Sample details in sample_info directory:
 
 Contributor initials: IDB - I'ah Donovan-Banfield; RPR - Rebee Penrice-Randal; HG - Hannah Goldswain; XD - Xiaofeng Dong
 
-## Raw fastq data available from the National Center for Biotechnology Information (NCBI) Short Read Archive (SRA) (Project Accession Number PRJNA854613)
+## Access to raw fastq data 
+Deposited in the National Center for Biotechnology Information (NCBI) Short Read Archive (SRA)
+Accessible here: https://www.ncbi.nlm.nih.gov/bioproject/PRJNA854613
 
+## Contact us
 Correspondence to: I'ah Donovan-Banfield (i.donovan-banfield@liverpool.ac.uk), Tom Fletcher (tom.fletcher@lstmed.ac.uk) or Julian Hiscox (julianh@liverpool.ac.uk)
 
