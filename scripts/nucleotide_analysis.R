@@ -76,7 +76,7 @@ for (i in 1:length(mut_list)) {
 #bind all data together, add metadata and convert to long form
 all_mut <- bind_rows(mut_list, .id = "data.frame")
 all_mut <- merge(metadata, all_mut, by = "kit_id")
-melt_mut <- reshape2::melt(all_mut, na.rm=F, id.vars=c("Subject", "visit_day", "tx_group", "lineage_group",
+melt_mut <- reshape2::melt(all_mut, na.rm=F, id.vars=c("Subject", "visit_day", "tx_group", "lineage_group", "kit_id",
                                                        "Position", "Coverage", "ct_group"), 
                            measure.vars=c("TsRatio", "TvRatio"))
 # set class for columns 
@@ -310,7 +310,7 @@ base.change.all.plot <- ggplot(melt_allbc, aes(x=visit_day, y=value, colour= tx_
   stat_pvalue_manual(
     stat.test.base.all,  label = "p.adj.signif", tip.length = 0.0, y.position = 0.0062)
 
-ggsave(base.change.all.plot, filename = "~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/S1_allbase_jit.png", device="png", dpi=300, width=10, height=8)
+ggsave(base.change.all.plot, filename = "~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/S1_allbase_jit.pdf", device="pdf", dpi=300, width=10, height=8)
 
 # isolating GA, AG, CU and UC (molnupiravir changes) for fig 1 
 meanGACU <- merge(meanGA, meanCU, by =c("kit_id","tx_group", "lineage_group", "visit_day","ct_group"))
@@ -406,4 +406,4 @@ fig1_all <- plot_grid(fig1_ab, fig1_cd_leg,
                      rel_widths = c(1, 1.4), rel_heights = c(1, 1.4)
 )
 
-save_plot(fig1_all, filename = "~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/fig1_panel-jit_revised.png", dpi=300, base_width=8, base_height = 10, device="png", bg="white")
+save_plot(fig1_all, filename = "~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/fig1_panel-jit_revised.pdf", dpi=300, base_width=8, base_height = 10, device="pdf", bg="white")
