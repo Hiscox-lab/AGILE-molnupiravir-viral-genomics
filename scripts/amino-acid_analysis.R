@@ -1,3 +1,7 @@
+# Script created by I'ah Donovan-Banfield to parse DiversiTools amino acid outputs for 
+# data visualisation for Figs. 2, 3 and Supplementary Figs. 2-4 in the manuscript 
+# "Characterisation of SARS-CoV-2 genomic variations in response to molnupiravir treatment in the AGILE Phase IIa clinical trial."
+
 library(tidyverse)
 library(ggplot2)
 library(cowplot)
@@ -661,7 +665,7 @@ fig2_wleg <- plot_grid(fig2_abcd, legend_b, ncol = 1, rel_heights = c(1,0.1), re
                        align = "vh", axis = "l")
 
 # write out
-save_plot(fig2_wleg, filename = ("~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/fig2.png"), base_width=10, base_height = 12, bg="white")
+save_plot(fig2_wleg, filename = ("~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/fig2_final.png"), base_width=10, base_height = 12, dpi=300, bg="white")
 
 # Fig3 - all whole genome for rest of approx. equally matched lineages (alpha, EU1, BA.1)
 fig3_wg_all <- plot_grid(
@@ -687,7 +691,8 @@ fig3_wg_all <- plot_grid(
 fig3_wleg <- plot_grid(fig3_wg_all, legend_b, ncol = 1, rel_heights = c(1,0.1), rel_widths = c(1, 0.5),
                        align = "vh", axis = "l")
 
-save_plot(fig3_wleg, filename = ("~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/fig3_alpha_ba1_eu1_aa-diversity.png"), base_width=10, base_height = 12, bg="white")
+save_plot(fig3_wleg, filename = ("~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/fig3_final.png"), base_width=10, base_height = 12, dpi=300, bg="white")
+
 
 ### supplemental figures
 # S2 - alpha nsp12, nsp14 and S
@@ -714,9 +719,9 @@ S2_alpha_nspS <- plot_grid(
 S2_wleg <- plot_grid(S2_alpha_nspS, legend_b, ncol = 1, rel_heights = c(1,0.1), rel_widths = c(1, 0.5),
                      align = "vh", axis = "l")
 
-save_plot(S2_wleg, filename = ("~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/S2_alpha_aa-diversity.png"), base_width=10, base_height = 12, bg="white")
+save_plot(S2_wleg, filename = ("~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/S2_alpha_aa-diversity_final.png"), base_width=10, base_height = 12, dpi=300, bg="white")
 
-# S4 - EU1 nsp12, nsp14 and S
+# S3 - EU1 nsp12, nsp14 and S
 S3_EU1_nspS <- plot_grid(
   plot_nsp12_mv_EU1 + theme(legend.position = "none",
                               axis.title.x = element_blank(),
@@ -740,7 +745,7 @@ S3_EU1_nspS <- plot_grid(
 S3_wleg <- plot_grid(S3_EU1_nspS, legend_b, ncol = 1, rel_heights = c(1,0.1), rel_widths = c(1, 0.5),
                      align = "vh", axis = "l")
 
-save_plot(S3_wleg, filename = ("~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/S3_EU1_aa-diversity.png"), base_width=10, base_height = 12, bg="white")
+save_plot(S3_wleg, filename = ("~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/S3_EU1_aa-diversity_final.png"), base_width=10, base_height = 12, dpi=300, bg="white")
 
 # S4 - BA1 nsp12, nsp14 and S
 S4_BA1_nspS <- plot_grid(
@@ -766,4 +771,4 @@ S4_BA1_nspS <- plot_grid(
 S4_wleg <- plot_grid(S4_BA1_nspS, legend_b, ncol = 1, rel_heights = c(1,0.1), rel_widths = c(1, 0.5),
                      align = "vh", axis = "l")
 
-save_plot(S4_wleg, filename = ("~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/S4_BA1_aa-diversity.png"), base_width=10, base_height = 12, bg="white")
+save_plot(S4_wleg, filename = ("~/projects/agile_mpv_seq_project/Reports/Agile_paper_figs/S4_BA1_aa-diversity_final.png"), base_width=10, base_height = 12, dpi=300, bg="white")
