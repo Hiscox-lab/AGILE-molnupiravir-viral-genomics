@@ -21,7 +21,7 @@ I’ah Donovan-Banfield<sup>1,2</sup> , Rebekah Penrice-Randal<sup>1</sup>, Hann
 17 Wellcome Centre for Human Genetics, Nuffield Department of Medicine, University of Oxford, UK<br>
 18 A*STAR Infectious Diseases Laboratories (A*STAR ID Labs), Agency for Science, Technology and Research (A*STAR), Singapore.<br>
 
-### Article now publised in Nature Communications (Open Access): https://www.nature.com/articles/s41467-022-34839-9
+### Article now published in Nature Communications (Open Access): https://www.nature.com/articles/s41467-022-34839-9
 
 ## 1. Sequencing of longitudinal nasopharyngeal swab samples using the Nimagen amplicon protocol (https://www.nimagen.com/gfx/protcol-NimaGen-covid-wgs_v19.pdf)
     1. 536 samples in total (180 patients days 1, 3 & 5, except 3 patients who missed >= 1 visits) 
